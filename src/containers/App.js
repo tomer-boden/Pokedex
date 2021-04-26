@@ -53,7 +53,7 @@ else
 
 function onEndChange(event){
 	if(event.target.value >= 1){
-	if (from > max)
+	if (event.target.value > max)
 			setFrom(max)
 		else
 	setFrom(event.target.value -1)
@@ -81,8 +81,10 @@ const filterPokemons = pokemons.filter(pokemon => {
 		<SearchBox searchChange ={onStartChange} place = "20"/>
 		<h3>pokemons</h3>
 		</div>
+		{console.log (from)}
 		<Scroll>
 		{from<=last_pokemon_index
+
 			?	
 		<CardList pokemons={filterPokemons}/>
 		:
