@@ -75,10 +75,11 @@ const filterPokemons = pokemons.filter(pokemon => {
 		<h1>Pokedex</h1>
 		<SearchBox searchChange ={onSearchChange} place = "search pokemon"/>
 		<div className="box">
-		<h3>show:</h3>
-		<SearchBox searchChange ={onStartChange} place = "20"/>
-		<h3>from:</h3>
+		<h3>from index:</h3>
 		<SearchBox searchChange ={onEndChange} place = "1"/>
+		<h3>, show:</h3>
+		<SearchBox searchChange ={onStartChange} place = "20"/>
+		<h3>pokemons</h3>
 		</div>
 		<Scroll>
 		{from<=last_pokemon_index
