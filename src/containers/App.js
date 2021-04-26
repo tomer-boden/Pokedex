@@ -1,12 +1,12 @@
 import './App.css';
-import React, {Component, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
-import ErrorBoundry from '../components/ErrorBoundry';
 import Particles from 'react-particles-js';
 
 const last_pokemon_index=1118
+const max = 2000
 
 const particlesOptions = {
   particles: {
@@ -40,15 +40,24 @@ function onSearchChange  (event) {
 	}
 
 function onStartChange(event){
-	if(event.target.value)
-	setShow(event.target.value);
-	else
+	if (event.target.value){
+	if(event.target.value > max)
+		setShow(max)
+	else{
+	setShow(event.target.value)
+}
+}
+else
 	setShow(0)
 }
 
 function onEndChange(event){
-	if(event.target.value >= 1)
-	setFrom(event.target.value -1);
+	if(event.target.value >= 1){
+	if (from > max)
+			setFrom(max)
+		else
+	setFrom(event.target.value -1)
+}
 	else
 	setFrom(0);
 }
@@ -72,14 +81,12 @@ const filterPokemons = pokemons.filter(pokemon => {
 		<SearchBox searchChange ={onEndChange} place = "1"/>
 		</div>
 		<Scroll>
-		<ErrorBoundry>
 		{from<=last_pokemon_index
 			?	
 		<CardList pokemons={filterPokemons}/>
 		:
 		<h1 className="tc">no pokemons after that index</h1> 
 		}
-		</ErrorBoundry>
 		</Scroll>
 		</div>
 		);

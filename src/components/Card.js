@@ -1,46 +1,41 @@
 import React, {useState,useEffect } from 'react';
 import './Card.css';
 
-const Card = ({name, email, id, url}) => {
-const [ime, setIme] = useState([])
+const Card = ({name, id, url}) => {
+const [image, setImage] = useState([])
 const [type, setType] = useState([])
 const [type2, setType2] = useState([])
-const [ind, setInd] = useState('')
+const [index, setIndex] = useState('')
 
 async function fetchPokemon (url) {
 const fetched = await fetch(url)
 const pokemons = await fetched.json()
-await setIme(pokemons.sprites.front_default)
-await setType(pokemons.types[0].type.name)
+setImage(pokemons.sprites.front_default)
+setType(pokemons.types[0].type.name)
 if (pokemons.types[1])
 {
-	{await setType2("/" + pokemons.types[1].type.name)}
+	{setType2("/" + pokemons.types[1].type.name)}
 }
 else{
-	{await setType2("")}
+	{setType2("")}
 }
 if (pokemons.id < 894)
-{await setInd(pokemons.id)}
+{setIndex(pokemons.id)}
 else
 {
-	await setInd('special')
+	setIndex('special')
 }
 }
 
 useEffect(() => {
-
 fetchPokemon(url)
-
 	})
 
 return (
 	
 		<div className='tc dib bg3 pa3 ma2 grow bw2 shadow-5 card'>
-		<h2>#{ind} {name}</h2>
-		<img alt='photo' src={ime}/>
-		<div>
-
-		</div>
+		<h2>#{index} {name}</h2>
+		<img alt='photo' src={image}/>
 		<p>{type}{type2}</p>
 		</div>
 	

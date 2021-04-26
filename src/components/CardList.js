@@ -7,10 +7,8 @@ const CardList = ({pokemons}) => {
 	{pokemons.map((user, i) =>{
 		return (
 			<Card 
-			key={i} 
-			id={i} 
 			name={user.name} 
-			email="lala"
+			key={i} 
 			url={user.url}
 			/>
 	);
